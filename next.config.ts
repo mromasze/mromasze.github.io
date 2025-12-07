@@ -1,8 +1,10 @@
-import type { NextConfig } from "next";
+const isProd = process.env.NODE_ENV === 'production';
 
-const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
+const nextConfig = {
+    output: 'export',
+    basePath: isProd ? '/mromasze-portfolio' : '',
+    assetPrefix: isProd ? '/mromasze-portfolio' : '',
+    reactCompiler: true,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
