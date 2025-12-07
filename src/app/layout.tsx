@@ -3,8 +3,8 @@ import './globals.css';
 import I18nProvider from '@/components/I18nProvider';
 
 export const metadata: Metadata = {
-    title: 'Portfolio | Software Developer',
-    description: 'Portfolio of a software developer specializing in web development',
+    title: 'Portfolio | Michał Romaszewski',
+    description: 'Portfolio of a software developer specializing in programming safe and secure applications.',
 };
 
 export default function RootLayout({

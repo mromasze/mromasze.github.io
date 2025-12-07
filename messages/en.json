@@ -1,0 +1,47 @@
+{
+  "Navbar": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "greeting": "Hi, my name is",
+    "name": "Michał",
+    "subtitle": "I create modern web, mobile, and desktop applications with a focus on security and performance.",
+    "projectsButton": "View Projects",
+    "contactButton": "Contact"
+  },
+  "About": {
+    "title": "About Me",
+    "p1": "I am a 23-year-old software engineer, a graduate of the School of Management and Banking in Krakow. I have many years of programming experience, gained through commercial projects and developing my own initiatives. My passion is cybersecurity, which translates into a commitment to robust and secure solutions in every project.",
+    "p2": "I specialize in creating web, desktop, and mobile applications using modern technologies such as React, Next.js, Java Spring Boot, and Electron. I am constantly expanding my knowledge, also taking an interest in blockchain technology and cryptocurrencies.",
+    "p3": "In my projects, I focus on security, performance, and delivering value to the user. I can work in a team as well as independently manage projects from concept to deployment. I am eager to take on new challenges and look for innovative solutions."
+  },
+  "Skills": {
+    "title": "Skills"
+  },
+  "Projects": {
+    "title": "Projects",
+    "ssVault": "ssVault",
+    "ssVaultDesc": "A secure vault for encrypting files and passwords, and managing GPG cryptographic keys in a minimalist graphical interface.",
+    "elcDelivery": "ELCDelivery",
+    "elcDeliveryDesc": "Website for a parcel carrier, cooperating with courier companies like InPost, Poczta Polska, GLS, Orlen Paczka, FedEx, UPS, Meest Post.",
+    "healthDataCenter": "Interdisciplinary Health Data Center",
+    "healthDataCenterDesc": "Tools for conducting statistical research on real health data for the Collegium Medicum of Jagiellonian University.",
+    "nzoz": "NZOZ Śródmieście Kraków",
+    "nzozDesc": "Website for the 'NZOZ Śródmieście' public healthcare institution in Krakow. Built with modern technologies as a static site without a backend.",
+    "waterAnalysis": "Water Sample Analysis",
+    "waterAnalysisDesc": "Software for analyzing water samples to find specific strains of bacteria for the Krakow waterworks.",
+    "githubButton": "GitHub →",
+    "liveButton": "Website →",
+    "screenshotsButton": "Screenshots →"
+  },
+  "Contact": {
+    "title": "Contact",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "sendButton": "Send"
+  }
+}
