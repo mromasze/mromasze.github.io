@@ -23,6 +23,9 @@
   },
   "Projects": {
     "title": "Projekty",
+    "type_commercial": "Komercyjny",
+    "type_opensource": "Open Source",
+    "type_scientific": "Naukowy",
     "ssVault": "ssVault",
     "ssVaultDesc": "Bezpieczny schowek szyfrujący pliki, hasła oraz zarządzający kluczami kryptograficznymi GPG w minimalistyczym interfejsie graficznym.",
     "elcDelivery": "ELCDelivery",
@@ -33,12 +36,15 @@
     "nzozDesc": "Strona internetowa dla Niepublicznego Zakładu Opieki Zdrowotnej Śródmieście w Krakowie. Przygotowana w nowoczesnych technologiach, strone statyczna bez backendu.",
     "waterAnalysis": "Analiza próbek wody",
     "waterAnalysisDesc": "Oprogramowanie do analizy próbek wody w poszukiwaniu konkretnych szczepów bakterii dla wodociągów krakowskich.",
+    "tAccess": "TAccess",
+    "tAccessDesc": "Bot Telegram do sprzedaży dostępu do prywatnych kanałów. Napisany w Javie, React (interfejs) i PostgreSQL.",
     "githubButton": "GitHub →",
     "liveButton": "Strona →",
     "screenshotsButton": "Screenshoty →"
   },
   "Contact": {
     "title": "Kontakt",
+    "callToAction": "Zbudujmy razem coś niesamowitego.",
     "nameLabel": "Imię",
     "emailLabel": "Email",
     "messageLabel": "Wiadomość",

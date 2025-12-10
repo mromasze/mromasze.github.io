@@ -23,6 +23,9 @@
   },
   "Projects": {
     "title": "Projects",
+    "type_commercial": "Commercial",
+    "type_opensource": "Open Source",
+    "type_scientific": "Scientific",
     "ssVault": "ssVault",
     "ssVaultDesc": "A secure vault for encrypting files and passwords, and managing GPG cryptographic keys in a minimalist graphical interface.",
     "elcDelivery": "ELCDelivery",
@@ -33,12 +36,15 @@
     "nzozDesc": "Website for the 'NZOZ Śródmieście' public healthcare institution in Krakow. Built with modern technologies as a static site without a backend.",
     "waterAnalysis": "Water Sample Analysis",
     "waterAnalysisDesc": "Software for analyzing water samples to find specific strains of bacteria for the Krakow waterworks.",
+    "tAccess": "TAccess",
+    "tAccessDesc": "Telegram bot for selling access to private channels. Built with Java, React (interface), and PostgreSQL.",
     "githubButton": "GitHub →",
     "liveButton": "Website →",
     "screenshotsButton": "Screenshots →"
   },
   "Contact": {
     "title": "Contact",
+    "callToAction": "Let's build something amazing together.",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "messageLabel": "Message",
