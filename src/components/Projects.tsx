@@ -15,14 +15,14 @@ export default function Projects() {
             tech: ['JavaScript', 'Electron', 'Bootstrap', 'SQLCipher'],
             github: 'https://github.com/mromasze/ssVault',
             live: 'https://mromasze.github.io/ssVault/',
-            image: '/file.svg',
+            image: '/projects/ss-vault.svg',
             screenshots: true,
         },
         {
             key: 'healthDataCenter',
             type: 'scientific',
             tech: ['Python', 'Java Spring Boot', 'Thymeleaf', 'Spring Security', 'Bootstrap'],
-            image: '/file.svg',
+            image: '/projects/uj.svg',
             screenshots: true,
         },
         {
@@ -30,7 +30,7 @@ export default function Projects() {
             type: 'opensource',
             tech: ['Java', 'React', 'PostgreSQL', 'Telegram API'],
             // Assuming open source implies GitHub link availability, adding placeholder if known, else standard handling
-            image: '/file.svg',
+            image: '/projects/tg.svg',
             screenshots: false,
         },
         {
@@ -97,7 +97,7 @@ export default function Projects() {
 
                             <div className="flex justify-between items-start mb-6 relative z-10">
                                 <div className="w-12 h-12 bg-gray-700/50 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300">
-                                     <Image src={project.image} alt={t(`${project.key}Desc`)} width={24} height={24} className="opacity-70 group-hover:opacity-100" />
+                                     <Image src={project.image} alt={t(`${project.key}Desc`)} width={32} height={32} className="opacity-70 group-hover:opacity-100 object-contain" />
                                 </div>
                                 <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(project.type)}`}>
                                     {t(`type_${project.type}`)}
