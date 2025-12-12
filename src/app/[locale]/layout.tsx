@@ -5,6 +5,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
 import Footer from '@/components/Footer';
+import Preloader from '@/components/Preloader';
 
 export const metadata: Metadata = {
     title: 'Portfolio | Software Developer',
@@ -36,6 +37,7 @@ export default async function RootLayout({
         <html lang={locale}>
         <body className="bg-gray-900 text-white">
             <NextIntlClientProvider locale={locale} messages={messages}>
+                <Preloader />
                 {children}
                 <Footer />
             </NextIntlClientProvider>
