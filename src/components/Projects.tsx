@@ -96,8 +96,16 @@ export default function Projects() {
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
                             <div className="flex justify-between items-start mb-6 relative z-10">
-                                <div className="w-12 h-12 bg-gray-700/50 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300">
-                                     <Image src={project.image} alt={t(`${project.key}Desc`)} width={32} height={32} className="opacity-70 group-hover:opacity-100 object-contain" />
+                                <div className="w-12 h-12 bg-gray-700/50 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300 p-2">
+                                     <div className="relative w-full h-full">
+                                        <Image 
+                                            src={project.image} 
+                                            alt={t(`${project.key}Desc`)} 
+                                            fill 
+                                            className="opacity-70 group-hover:opacity-100 object-contain" 
+                                            sizes="48px"
+                                        />
+                                     </div>
                                 </div>
                                 <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(project.type)}`}>
                                     {t(`type_${project.type}`)}
