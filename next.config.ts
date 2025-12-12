@@ -7,6 +7,9 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig: any = {
     output: 'export',
     reactCompiler: true,
+    images: {
+        unoptimized: true,
+    },
 };
 
 export default withNextIntl(nextConfig);

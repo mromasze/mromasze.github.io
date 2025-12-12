@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 
@@ -20,6 +21,23 @@ export default function Hero() {
                 
                 {/* Backlight effect */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-8 relative inline-block"
+                >
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-blue-500/30 overflow-hidden relative shadow-[0_0_40px_rgba(59,130,246,0.3)]">
+                        <Image
+                            src="/avatar.png"
+                            alt="Profile Avatar"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
