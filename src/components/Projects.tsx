@@ -38,7 +38,7 @@ export default function Projects() {
             type: 'commercial',
             tech: ['React', 'Java Spring Boot', 'Bootstrap', 'PostgreSQL', 'React Native', 'TypeScript', 'Cloudflare', 'OpenMapAPI'],
             live: 'http://37.59.114.253/',
-            image: '/file.svg',
+            image: '/projects/elc-delivery.svg',
             screenshots: true,
         },
         {
@@ -46,14 +46,14 @@ export default function Projects() {
             type: 'commercial',
             tech: ['React', 'Next.js', 'Bootstrap', 'Cloudflare'],
             live: 'https://nzozsrodmiescie.pl/',
-            image: '/file.svg',
+            image: '/projects/nzoz.png',
             screenshots: true,
         },
         {
             key: 'waterAnalysis',
             type: 'scientific',
             tech: ['C++', '.NET', 'SQLite'],
-            image: '/file.svg',
+            image: '/projects/wodociagi.png',
             screenshots: false,
         },
     ];
