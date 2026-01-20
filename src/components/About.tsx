@@ -18,9 +18,9 @@ export default function About() {
     const opacity = useTransform(scrollYProgress, [0.1, 0.4], [0.3, 1]);
 
     return (
-        <section id="about" ref={containerRef} className="py-32 bg-gray-950 relative min-h-[80vh] flex items-center">
+        <section id="about" ref={containerRef} className="py-32 bg-white dark:bg-gray-950 relative min-h-[80vh] flex items-center transition-colors duration-300">
              {/* Decorative elements */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[100px] -z-10"></div>
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 dark:bg-blue-900/10 rounded-full blur-[100px] -z-10"></div>
 
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div 
@@ -29,7 +29,7 @@ export default function About() {
                     viewport={{ once: true }}
                     className="mb-12 text-center"
                 >
-                    <h2 className="text-sm font-bold tracking-widest text-blue-500 uppercase mb-4">
+                    <h2 className="text-sm font-bold tracking-widest text-blue-600 dark:text-blue-500 uppercase mb-4">
                         {t('title')}
                     </h2>
                 </motion.div>
@@ -55,7 +55,7 @@ export default function About() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ margin: "-10% 0px -10% 0px", amount: 0.5 }}
                             transition={{ duration: 0.8 }}
-                            className="text-2xl md:text-4xl font-semibold leading-tight text-gray-200 transition-colors duration-500 hover:text-white"
+                            className="text-2xl md:text-4xl font-semibold leading-tight text-gray-500 dark:text-gray-400 transition-colors duration-500 hover:text-gray-900 dark:hover:text-white"
                         >
                             {paragraph}
                         </motion.p>

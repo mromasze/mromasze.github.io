@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +12,11 @@ export default function Navbar() {
     const navLinks = ['about', 'skills', 'projects', 'contact'];
 
     return (
-        <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
+        <nav className="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0">
-                        <a href="#hero" className="text-2xl font-bold text-blue-500">mromasze</a>
+                        <a href="#hero" className="text-2xl font-bold text-blue-600 dark:text-blue-500">mromasze</a>
                     </div>
 
                     {/* Desktop Menu */}
@@ -24,20 +25,22 @@ export default function Navbar() {
                             <a
                                 key={link}
                                 href={`#${link}`}
-                                className="text-gray-300 hover:text-blue-500 transition-colors duration-200"
+                                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200 font-medium"
                             >
                                 {t(link)}
                             </a>
                         ))}
                         <LanguageSwitcher />
+                        <ThemeSwitcher />
                     </div>
 
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center">
                         <LanguageSwitcher />
+                        <ThemeSwitcher />
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-gray-300 hover:text-blue-500 ml-4"
+                            className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 ml-4"
                         >
                             <svg
                                 className="h-6 w-6"
@@ -62,12 +65,12 @@ export default function Navbar() {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
+                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                         {navLinks.map((link) => (
                             <a
                                 key={link}
                                 href={`#${link}`}
-                                className="block px-3 py-2 text-gray-300 hover:text-blue-500 transition-colors duration-200"
+                                className="block px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {t(link)}

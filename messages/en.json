@@ -10,7 +10,15 @@
     "name": "Michał",
     "subtitle": "I create modern web, mobile, and desktop applications with a focus on security and performance.",
     "projectsButton": "View Projects",
-    "contactButton": "Contact"
+    "contactButton": "Contact",
+    "skills_web": "Web Development",
+    "skills_web_desc": "Modern, fast websites using Next.js & React",
+    "skills_desktop": "Desktop Apps",
+    "skills_desktop_desc": "Cross-platform tools built with Electron",
+    "skills_mobile": "Mobile Apps",
+    "skills_mobile_desc": "Native performance with React Native",
+    "skills_security": "Security",
+    "skills_security_desc": "Secure & robust backend architectures"
   },
   "About": {
     "title": "About Me",
@@ -38,9 +46,16 @@
     "waterAnalysisDesc": "Software for analyzing water samples to find specific strains of bacteria for the Waterworks of the City of Krakow.",
     "tAccess": "TAccess",
     "tAccessDesc": "Telegram bot for selling access to private channels. Built with Java, React (interface), and PostgreSQL.",
+    "ssVaultLongDesc": "ssVault is a comprehensive security tool designed for personal data protection. It features AES-256 encryption for files and passwords, utilizing a custom SQLCipher implementation for secure database storage. The application provides a seamless GUI for GPG key management, allowing users to import, export, and generate keys effortlessly. It is built with Electron to ensure cross-platform compatibility.",
+    "elcDeliveryLongDesc": "ELCDelivery is a robust logistics platform that integrates with major courier services including InPost, Poczta Polska, and DHL via their respective APIs. The system handles automated waybill generation, package tracking, and route optimization. The backend relies on a microservices architecture using Spring Boot, while the frontend offers a responsive experience with React.",
+    "healthDataCenterLongDesc": "The Interdisciplinary Health Data Center project involves processing and visualizing large datasets of patient health records. It provides secure access for researchers to run statistical models. Key features include dynamic chart generation, data anonymization pipelines, and role-based access control, all strictly adhering to GDPR compliance.",
+    "nzozLongDesc": "This project is a high-performance static website for a medical facility. By leveraging Next.js static site generation (SSG), it achieves near-instant load times and excellent SEO scores. The site includes an intuitive appointment booking guide, doctor profiles, and an interactive map, ensuring accessibility for elderly patients.",
+    "waterAnalysisLongDesc": "Developed for the Krakow Waterworks, this desktop application automates the analysis of water quality samples. It interfaces directly with laboratory equipment to read sensor data, detecting bacterial strains like E. coli. The system generates PDF reports and maintains a historical database of water quality metrics.",
+    "tAccessLongDesc": "TAccess acts as an automated sales agent for Telegram channels. It integrates with payment gateways to automatically grant or revoke user access based on subscription status. The admin panel, built with React, allows channel owners to track revenue, manage subscribers, and configure bot responses.",
     "githubButton": "GitHub →",
     "liveButton": "Website →",
-    "screenshotsButton": "Screenshots →"
+    "detailsButton": "Details",
+    "noScreenshots": "Due to the sensitive nature of the data and the restrictive provisions of the Non-Disclosure Agreement (NDA), visual documentation and interface screenshots cannot be publicly disclosed."
   },
   "Contact": {
     "title": "Contact",

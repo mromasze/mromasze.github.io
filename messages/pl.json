@@ -10,7 +10,15 @@
     "name": "Michał",
     "subtitle": "Tworzę nowoczesne aplikacje webowe, mobilne i desktopowe, z naciskiem na bezpieczeństwo i wydajność.",
     "projectsButton": "Zobacz projekty",
-    "contactButton": "Kontakt"
+    "contactButton": "Kontakt",
+    "skills_web": "Strony WWW",
+    "skills_web_desc": "Nowoczesne strony w Next.js i React",
+    "skills_desktop": "Aplikacje Desktop",
+    "skills_desktop_desc": "Wieloplatformowe narzędzia w Electron",
+    "skills_mobile": "Aplikacje Mobilne",
+    "skills_mobile_desc": "Wydajne aplikacje w React Native",
+    "skills_security": "Bezpieczeństwo",
+    "skills_security_desc": "Bezpieczne i stabilne systemy backendowe"
   },
   "About": {
     "title": "O mnie",
@@ -38,9 +46,16 @@
     "waterAnalysisDesc": "Oprogramowanie do analizy próbek wody w poszukiwaniu konkretnych szczepów bakterii dla Wodociągów Miasta Krakowa.",
     "tAccess": "TAccess",
     "tAccessDesc": "Bot Telegram do sprzedaży dostępu do prywatnych kanałów. Napisany w Javie, React (interfejs) i PostgreSQL.",
+    "ssVaultLongDesc": "ssVault to kompleksowe narzędzie bezpieczeństwa zaprojektowane do ochrony danych osobistych. Oferuje szyfrowanie AES-256 dla plików i haseł, wykorzystując implementację SQLCipher do bezpiecznego przechowywania danych. Aplikacja zapewnia przejrzysty interfejs GUI do zarządzania kluczami GPG, umożliwiając użytkownikom łatwe importowanie, eksportowanie i generowanie kluczy. Zbudowana w oparciu o Electron, co zapewnia kompatybilność międzyplatformową.",
+    "elcDeliveryLongDesc": "ELCDelivery to rozbudowana platforma logistyczna integrująca się z głównymi firmami kurierskimi, takimi jak InPost, Poczta Polska i DHL, poprzez ich API. System obsługuje automatyczne generowanie listów przewozowych, śledzenie przesyłek i optymalizację tras. Backend opiera się na architekturze mikroserwisów z użyciem Spring Boot, podczas gdy frontend oferuje responsywne doświadczenie dzięki React.",
+    "healthDataCenterLongDesc": "Projekt Interdyscyplinarnego Centrum Danych o Zdrowiu obejmuje przetwarzanie i wizualizację dużych zbiorów danych dotyczących zdrowia pacjentów. Zapewnia bezpieczny dostęp dla badaczy do uruchamiania modeli statystycznych. Kluczowe funkcje obejmują dynamiczne generowanie wykresów, potoki anonimizacji danych oraz kontrolę dostępu opartą na rolach (RBAC), wszystko w ścisłej zgodności z RODO.",
+    "nzozLongDesc": "Ten projekt to wysokowydajna statyczna strona internetowa dla placówki medycznej. Dzięki wykorzystaniu generowania stron statycznych (SSG) w Next.js, osiąga niemal natychmiastowe czasy ładowania i doskonałe wyniki SEO. Strona zawiera intuicyjny przewodnik rezerwacji wizyt, profile lekarzy oraz interaktywną mapę, zapewniając dostępność również dla starszych pacjentów.",
+    "waterAnalysisLongDesc": "Oprogramowanie stworzone dla Wodociągów Miasta Krakowa automatyzuje analizę próbek jakości wody. Łączy się bezpośrednio ze sprzętem laboratoryjnym w celu odczytu danych z czujników, wykrywając szczepy bakterii takie jak E. coli. System generuje raporty PDF i utrzymuje historyczną bazę danych wskaźników jakości wody.",
+    "tAccessLongDesc": "TAccess działa jako automatyczny agent sprzedaży dla kanałów Telegram. Integruje się z bramkami płatności, aby automatycznie przyznawać lub cofać dostęp użytkownikom na podstawie statusu subskrypcji. Panel administracyjny, zbudowany w React, pozwala właścicielom kanałów śledzić przychody, zarządzać subskrybentami i konfigurować odpowiedzi bota.",
     "githubButton": "GitHub →",
     "liveButton": "Strona →",
-    "screenshotsButton": "Screenshoty →"
+    "detailsButton": "Szczegóły",
+    "noScreenshots": "Ze względu na poufny charakter przetwarzanych danych oraz restrykcyjne zapisy umowy o zachowaniu poufności (NDA), dokumentacja wizualna oraz zrzuty ekranu interfejsu nie mogą zostać udostępnione publicznie."
   },
   "Contact": {
     "title": "Kontakt",

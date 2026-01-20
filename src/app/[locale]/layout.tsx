@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import '../globals.css';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 import Footer from '@/components/Footer';
 import Preloader from '@/components/Preloader';
@@ -34,13 +35,15 @@ export default async function RootLayout({
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
-        <body className="bg-gray-900 text-white">
-            <NextIntlClientProvider locale={locale} messages={messages}>
-                <Preloader />
-                {children}
-                <Footer />
-            </NextIntlClientProvider>
+        <html lang={locale} suppressHydrationWarning>
+        <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+                <NextIntlClientProvider locale={locale} messages={messages}>
+                    <Preloader />
+                    {children}
+                    <Footer />
+                </NextIntlClientProvider>
+            </ThemeProvider>
         </body>
         </html>
     );
