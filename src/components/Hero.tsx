@@ -1,17 +1,26 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 import HeroClouds from './HeroClouds';
 import CyberBackground from './CyberBackground';
+import CyberCursor from './CyberCursor';
 
 export default function Hero() {
     const t = useTranslations('Hero');
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section 
+            id="hero" 
+            className={`relative min-h-screen flex items-center justify-center overflow-hidden ${isHovered ? 'cursor-none' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {isHovered && <CyberCursor />}
             
             {/* New Cyber Background */}
             <CyberBackground />
