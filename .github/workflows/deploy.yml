@@ -1,0 +1,168 @@
+name: Deploy portfolio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'messages/**'
+      - 'i18n.ts'
+      - 'next.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'postcss.config.mjs'
+      - 'deploy/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Package server release
+        shell: bash
+        run: |
+          test -f out/index.html
+          tar -C out -czf portfolio-site.tar.gz .
+
+      - name: Upload server release
+        uses: actions/upload-artifact@v5
+        with:
+          name: portfolio-site
+          path: portfolio-site.tar.gz
+          if-no-files-found: error
+          retention-days: 3
+
+      # actions/configure-pages is deliberately not used here: the redirect page only
+      # contains absolute URLs, so it needs no base path, and querying the Pages API
+      # would require granting this job an extra `pages` token scope.
+      - name: Prepare GitHub Pages redirect
+        shell: bash
+        run: |
+          install -d pages-redirect
+          cp deploy/pages/index.html pages-redirect/index.html
+          cp deploy/pages/index.html pages-redirect/404.html
+          touch pages-redirect/.nojekyll
+
+      - name: Upload GitHub Pages redirect
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: pages-redirect
+
+  deploy-server:
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://mromasze.dev
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+      DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+    steps:
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          missing=()
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_PATH DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS; do
+            if [[ -z "${!name:-}" ]]; then
+              missing+=("$name")
+            fi
+          done
+          if (( ${#missing[@]} > 0 )); then
+            printf 'Missing production secrets: %s\n' "${missing[*]}" >&2
+            exit 1
+          fi
+          if [[ "$DEPLOY_PATH" != /opt/* ]]; then
+            echo 'DEPLOY_PATH must be an absolute path below /opt.' >&2
+            exit 1
+          fi
+
+      - name: Download server release
+        uses: actions/download-artifact@v5
+        with:
+          name: portfolio-site
+
+      - name: Set up SSH
+        shell: bash
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Upload release
+        shell: bash
+        run: |
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" \
+            "install -d -m 755 '$DEPLOY_PATH' '$DEPLOY_PATH/releases'"
+          scp -i ~/.ssh/deploy_key portfolio-site.tar.gz \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/portfolio-${GITHUB_SHA}.tar.gz"
+
+      - name: Activate release
+        shell: bash
+        run: |
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' RELEASE_SHA='$GITHUB_SHA' bash -s" <<'EOF'
+          set -euo pipefail
+
+          if [[ "$DEPLOY_PATH" != /opt/* || ! "$RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo 'Refusing unsafe deployment path or release identifier.' >&2
+            exit 1
+          fi
+
+          archive="$DEPLOY_PATH/portfolio-$RELEASE_SHA.tar.gz"
+          release="$DEPLOY_PATH/releases/$RELEASE_SHA"
+
+          install -d -m 755 "$release"
+          tar -xzf "$archive" -C "$release"
+          test -f "$release/index.html"
+          rm -f "$archive"
+
+          ln -sfn "$release" "$DEPLOY_PATH/current.next"
+          mv -Tf "$DEPLOY_PATH/current.next" "$DEPLOY_PATH/current"
+          printf 'Activated portfolio release %s\n' "$RELEASE_SHA"
+          EOF
+
+  deploy-pages-redirect:
+    runs-on: ubuntu-latest
+    needs: [build, deploy-server]
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages redirect
+        id: deployment
+        uses: actions/deploy-pages@v4

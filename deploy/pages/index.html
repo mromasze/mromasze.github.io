@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url=https://mromasze.dev/">
+    <link rel="canonical" href="https://mromasze.dev/">
+    <title>Przekierowanie do mromasze.dev</title>
+    <script>
+      (() => {
+        const target = new URL('https://mromasze.dev/');
+        target.pathname = window.location.pathname;
+        target.search = window.location.search;
+        target.hash = window.location.hash;
+        window.location.replace(target.toString());
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Portfolio jest dostępne pod adresem <a href="https://mromasze.dev/">mromasze.dev</a>.</p>
+  </body>
+</html>
