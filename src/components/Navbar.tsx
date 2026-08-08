@@ -1,15 +1,40 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
+import ScrollProgress from './ScrollProgress';
+
+const navLinks = ['about', 'skills', 'projects', 'contact'];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState('');
     const t = useTranslations('Navbar');
-    
-    const navLinks = ['about', 'skills', 'projects', 'contact'];
+
+    // Highlight whichever section is crossing the middle of the viewport. The symmetric
+    // -45% margins shrink the observer root to a thin band, so exactly one section is
+    // intersecting at a time and the indicator never flickers between two of them.
+    useEffect(() => {
+        const sections = navLinks
+            .map((id) => document.getElementById(id))
+            .filter((el): el is HTMLElement => el !== null);
+
+        if (sections.length === 0) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries.find((entry) => entry.isIntersecting);
+                if (visible) setActive(visible.target.id);
+            },
+            { rootMargin: '-45% 0px -45% 0px' },
+        );
+
+        sections.forEach((section) => observer.observe(section));
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <nav className="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
@@ -25,9 +50,21 @@ export default function Navbar() {
                             <a
                                 key={link}
                                 href={`#${link}`}
-                                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200 font-medium"
+                                aria-current={active === link ? 'true' : undefined}
+                                className={`relative py-1 transition-colors duration-200 font-medium ${
+                                    active === link
+                                        ? 'text-blue-600 dark:text-blue-400'
+                                        : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500'
+                                }`}
                             >
                                 {t(link)}
+                                {active === link && (
+                                    <motion.span
+                                        layoutId="nav-active"
+                                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                        className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 dark:from-blue-400 dark:to-emerald-400"
+                                    />
+                                )}
                             </a>
                         ))}
                         <LanguageSwitcher />
@@ -79,6 +116,8 @@ export default function Navbar() {
                     </div>
                 </div>
             )}
+
+            <ScrollProgress />
         </nav>
     );
 }

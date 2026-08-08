@@ -27,7 +27,20 @@
     "p3": "In my projects, I focus on security, performance, and delivering value to the user. I can work in a team as well as independently manage projects from concept to deployment. I am eager to take on new challenges and look for innovative solutions."
   },
   "Skills": {
-    "title": "Skills"
+    "title": "Skills",
+    "manifestoTitle": "There is no such thing as a frontend developer",
+    "manifestoLead": "Calling yourself \"frontend\" or \"backend\" is not a specialization. It is a ceiling you build for yourself, and then decorate.",
+    "manifestoBody": "Every bug worth solving lives on a boundary — in the query behind the spinner, in the cache between the CDN and the render, in the token that expired two layers below the button. Whoever refuses to cross that boundary never sees the whole bug, only their half of it. The directories below are a filing convenience. The symlinks are the truth.",
+    "quoteLaw": "All non-trivial abstractions, to some degree, are leaky.",
+    "quoteFollow": "The only way to deal with the leaks competently is to learn about how the abstractions work and what they are abstracting.",
+    "quoteSource": "The Law of Leaky Abstractions, 2002",
+    "treeFilter": "filter skills…",
+    "treeExpandAll": "expand all",
+    "treeCollapseAll": "collapse all",
+    "treeNoMatch": "nothing matches \"{query}\"",
+    "treeSymlinkHint": "Same skill, filed under another directory.",
+    "treeLegend": "{dirs} directories · {skills} skills · {links} symlinks — the arrows are the point",
+    "treeKeyboardHint": "↑ ↓ move · → ← open and close · Enter toggles"
   },
   "Projects": {
     "title": "Projects",

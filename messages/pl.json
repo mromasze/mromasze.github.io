@@ -27,7 +27,20 @@
     "p3": "W moich projektach skupiam się na bezpieczeństwie, wydajności i dostarczaniu wartości dla użytkownika. Potrafię pracować w zespole, jak i samodzielnie prowadzić projekty od koncepcji do wdrożenia. Chętnie podejmuję nowe wyzwania i szukam innowacyjnych rozwiązań."
   },
   "Skills": {
-    "title": "Umiejętności"
+    "title": "Umiejętności",
+    "manifestoTitle": "Nie ma czegoś takiego jak frontend developer",
+    "manifestoLead": "Nazywanie siebie „frontendem” albo „backendem” to nie specjalizacja. To sufit, który sam sobie stawiasz, a potem dekorujesz.",
+    "manifestoBody": "Każdy błąd wart rozwiązania siedzi na granicy — w zapytaniu za spinnerem, w cache między CDN a renderem, w tokenie, który wygasł dwie warstwy pod przyciskiem. Kto nie chce tej granicy przekroczyć, nigdy nie zobaczy całego błędu, tylko swoją połowę. Katalogi poniżej to wygoda w segregowaniu. Prawdą są symlinki.",
+    "quoteLaw": "All non-trivial abstractions, to some degree, are leaky.",
+    "quoteFollow": "The only way to deal with the leaks competently is to learn about how the abstractions work and what they are abstracting.",
+    "quoteSource": "Prawo cieknących abstrakcji, 2002",
+    "treeFilter": "filtruj umiejętności…",
+    "treeExpandAll": "rozwiń wszystko",
+    "treeCollapseAll": "zwiń wszystko",
+    "treeNoMatch": "nic nie pasuje do „{query}”",
+    "treeSymlinkHint": "Ta sama umiejętność, wpięta w inny katalog.",
+    "treeLegend": "{dirs} katalogi · {skills} umiejętności · {links} symlinki — chodzi właśnie o te strzałki",
+    "treeKeyboardHint": "↑ ↓ ruch · → ← rozwiń i zwiń · Enter przełącza"
   },
   "Projects": {
     "title": "Projekty",

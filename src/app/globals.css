@@ -1,7 +1,19 @@
 @import "tailwindcss";
 
+/*
+ * Tailwind v4 resolves `dark:` from prefers-color-scheme by default. next-themes is set up
+ * with attribute="class", so without this the .dark class it writes is never read and the
+ * theme switcher does nothing.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
     scroll-behavior: smooth;
+}
+
+/* Fixed navbar is 4rem tall — keep anchored sections clear of it. */
+section[id] {
+    scroll-margin-top: 4rem;
 }
 
 body {

@@ -12,13 +12,15 @@ export default function LanguageSwitcher() {
     ];
 
     return (
-        <div className="flex space-x-1 rounded-full bg-gray-800/50 p-1 border border-gray-700/50 backdrop-blur-sm">
+        <div className="flex space-x-1 rounded-full bg-gray-200/70 dark:bg-gray-800/50 p-1 border border-gray-300/60 dark:border-gray-700/50 backdrop-blur-sm">
             {tabs.map((tab) => (
                 <button
                     key={tab.id}
                     onClick={() => setLocale(tab.id)}
                     className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 focus:outline-none ${
-                        locale === tab.id ? 'text-white' : 'text-gray-400 hover:text-gray-200'
+                        locale === tab.id
+                            ? 'text-white'
+                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
                     }`}
                 >
                     {locale === tab.id && (
