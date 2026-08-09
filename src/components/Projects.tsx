@@ -1,192 +1,68 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
-import ProjectModal from './ProjectModal';
+import { useTranslations } from 'next-intl';
+import { motion } from 'framer-motion';
+import Experience from './Experience';
+import PersonalProjects from './PersonalProjects';
 
-interface Project {
-    key: string;
-    type: string;
-    tech: string[];
-    github?: string;
-    live?: string;
-    image: string;
-    screenshotUrls?: string[];
-}
+const TABS = ['experience', 'personal'] as const;
+type Tab = (typeof TABS)[number];
 
 export default function Projects() {
     const t = useTranslations('Projects');
-    
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-    const projects: Project[] = [
-        {
-            key: 'ssVault',
-            type: 'opensource',
-            tech: ['JavaScript', 'Electron', 'Bootstrap', 'SQLCipher'],
-            github: 'https://github.com/mromasze/ssVault',
-            live: 'https://mromasze.github.io/ssVault/',
-            image: '/projects/ss-vault.svg',
-            screenshotUrls: ['/projects/ss-vault.svg'],
-        },
-        {
-            key: 'healthDataCenter',
-            type: 'scientific',
-            tech: ['Python', 'Java Spring Boot', 'Thymeleaf', 'Spring Security', 'Bootstrap'],
-            image: '/projects/uj.svg',
-            // No screenshots for NDA
-        },
-        {
-            key: 'tAccess',
-            type: 'opensource',
-            tech: ['Java', 'React', 'PostgreSQL', 'Telegram API'],
-            image: '/projects/tg.svg',
-            screenshotUrls: ['/projects/tg.svg'],
-        },
-        {
-            key: 'elcDelivery',
-            type: 'commercial',
-            tech: ['React', 'Java Spring Boot', 'Bootstrap', 'PostgreSQL', 'React Native', 'TypeScript', 'Cloudflare', 'OpenMapAPI'],
-            live: 'http://37.59.114.253/',
-            image: '/projects/elc-delivery.svg',
-            screenshotUrls: ['/projects/elc-delivery.svg'],
-        },
-        {
-            key: 'nzoz',
-            type: 'commercial',
-            tech: ['React', 'Next.js', 'Bootstrap', 'Cloudflare'],
-            live: 'https://nzozsrodmiescie.pl/',
-            image: '/projects/nzoz.png',
-            screenshotUrls: ['/projects/nzoz.png'],
-        },
-        {
-            key: 'waterAnalysis',
-            type: 'scientific',
-            tech: ['C++', '.NET', 'SQLite'],
-            image: '/projects/wodociagi.png',
-            // No screenshots for NDA
-        },
-    ];
-
-    const getTypeColor = (type: string) => {
-        switch (type) {
-            case 'commercial': return 'bg-amber-500/20 text-amber-700 dark:text-amber-300 border-amber-500/30';
-            case 'opensource': return 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-500/30';
-            case 'scientific': return 'bg-purple-500/20 text-purple-700 dark:text-purple-300 border-purple-500/30';
-            default: return 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
-        }
-    };
+    const [tab, setTab] = useState<Tab>('experience');
 
     return (
-        <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 relative transition-colors duration-300">
-             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/5 dark:bg-blue-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <section id="projects" className="py-24 bg-gray-50 dark:bg-gray-900 relative transition-colors duration-300">
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/5 dark:bg-blue-900/10 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <motion.h2 
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <motion.h2
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white"
+                    className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white"
                 >
                     {t('title')}
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={project.key}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ y: -8 }}
-                            className="bg-white dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col group relative overflow-hidden"
-                        >
-                            {/* Gradient overlay on hover */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
-                            <div className="flex justify-between items-start mb-6 relative z-10">
-                                <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700/50 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300 p-2">
-                                     <div className="relative w-full h-full">
-                                        <Image 
-                                            src={project.image} 
-                                            alt={t(`${project.key}Desc`)} 
-                                            fill 
-                                            className="opacity-70 group-hover:opacity-100 object-contain dark:invert-0" 
-                                            sizes="48px"
-                                        />
-                                     </div>
-                                </div>
-                                <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(project.type)}`}>
-                                    {t(`type_${project.type}`)}
-                                </span>
-                            </div>
-                            
-                            <div className="flex-grow relative z-10">
-                                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{t(project.key)}</h3>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed text-sm line-clamp-3">{t(`${project.key}Desc`)}</p>
-                            </div>
-
-                            <div className="flex flex-wrap gap-2 mb-6 relative z-10">
-                                {project.tech.slice(0, 4).map((tech) => (
-                                    <span
-                                        key={tech}
-                                        className="px-2.5 py-0.5 bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 rounded text-xs font-medium border border-gray-200 dark:border-gray-600/30"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                                {project.tech.length > 4 && (
-                                    <span className="px-2.5 py-0.5 bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 rounded text-xs font-medium border border-gray-200 dark:border-gray-600/30">
-                                        +{project.tech.length - 4}
-                                    </span>
+                {/* Tab switcher */}
+                <div className="flex justify-center mb-14">
+                    <div
+                        role="tablist"
+                        aria-label={t('title')}
+                        className="inline-flex gap-1 p-1 rounded-full bg-gray-200/70 dark:bg-gray-800/60 border border-gray-300/60 dark:border-gray-700/50 backdrop-blur-sm"
+                    >
+                        {TABS.map((id) => (
+                            <button
+                                key={id}
+                                role="tab"
+                                aria-selected={tab === id}
+                                onClick={() => setTab(id)}
+                                className={`relative rounded-full px-5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-blue-500 ${
+                                    tab === id
+                                        ? 'text-white'
+                                        : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'
+                                }`}
+                            >
+                                {tab === id && (
+                                    <motion.span
+                                        layoutId="projects-tab"
+                                        className="absolute inset-0 rounded-full bg-blue-600"
+                                        transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                                    />
                                 )}
-                            </div>
+                                <span className="relative z-10">{t(id === 'experience' ? 'tabExperience' : 'tabPersonal')}</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
 
-                            <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-200 dark:border-gray-700/50 relative z-10">
-                                <div className="flex gap-4">
-                                    {project.github && (
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1 font-medium"
-                                        >
-                                            GitHub
-                                        </a>
-                                    )}
-                                    {project.live && (
-                                        <a
-                                            href={project.live}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1 font-medium"
-                                        >
-                                            Live
-                                        </a>
-                                    )}
-                                </div>
-                                <button
-                                    onClick={() => setSelectedProject(project)}
-                                    className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-medium flex items-center gap-1 group/btn"
-                                >
-                                    {t('detailsButton')}
-                                    <span className="group-hover/btn:translate-x-0.5 transition-transform">→</span>
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
+                <div role="tabpanel">
+                    {tab === 'experience' ? <Experience /> : <PersonalProjects />}
                 </div>
             </div>
-
-            {/* Modal */}
-            <ProjectModal 
-                project={selectedProject} 
-                isOpen={!!selectedProject} 
-                onClose={() => setSelectedProject(null)} 
-            />
         </section>
     );
 }

@@ -103,7 +103,7 @@ function splitOnQuery(label: string, query: string): [string, string, string] {
 
 export default function SkillTree() {
     const t = useTranslations('Skills');
-    const [collapsed, setCollapsed] = useState<string[]>([]);
+    const [collapsed, setCollapsed] = useState<string[]>(ALL_DIRS);
     const [query, setQuery] = useState('');
     const [focused, setFocused] = useState<string>(ALL_DIRS[0]);
     const rowRefs = useRef(new Map<string, HTMLButtonElement>());
